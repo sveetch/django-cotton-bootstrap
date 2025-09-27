@@ -1,0 +1,12 @@
+include MANIFEST.in
+include LICENCE.txt
+include README.rst
+
+recursive-include cotton_bootstrap/templates *
+recursive-include cotton_bootstrap/static *
+recursive-include cotton_bootstrap/locale *
+
+recursive-exclude tests *
+recursive-exclude sandbox *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

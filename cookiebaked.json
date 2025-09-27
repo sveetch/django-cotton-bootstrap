@@ -1,0 +1,21 @@
+{
+    "__class_name": "Djangocottonbootstrap",
+    "_checkout": null,
+    "_output_dir": "/home/emencia/Apps",
+    "_repo_dir": "/home/emencia/Cookies/djangoapp",
+    "_sveetch_djangoapp_version": "0.8.0",
+    "_template": "/home/emencia/Cookies/djangoapp",
+    "app_name": "cotton_bootstrap",
+    "author_email": "sveetch@gmail.com",
+    "author_name": "David Thenon",
+    "author_username": "sveetch",
+    "include_api": false,
+    "include_cmsplugin": false,
+    "include_frontend": true,
+    "init_git_repository": true,
+    "package_name": "django-cotton-bootstrap",
+    "project_name": "Django Cotton Bootstrap",
+    "project_short_description": "A library with primitive Bootstrap components for Django Cotton",
+    "pypi_username": "sveetch",
+    "version": "0.1.0"
+}
