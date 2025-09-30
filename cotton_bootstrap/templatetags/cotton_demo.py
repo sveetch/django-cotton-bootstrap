@@ -7,7 +7,6 @@ from pygments.formatters import HtmlFormatter
 
 from django import template
 from django.conf import settings
-from django.utils.safestring import mark_safe
 
 from django_cotton.cotton_loader import Loader as CottonLoader
 
@@ -115,7 +114,11 @@ class ComponentDemoNode(template.Node):
         self.options = options
 
         self.defaults = {
-            "template": getattr(settings, "COTTON_DEMO_TAG", "cotton_bootstrap/tag.html"),
+            "template": getattr(
+                settings,
+                "COTTON_DEMO_TAG",
+                "cotton_bootstrap/tag.html"
+            ),
             "with_render": True,
             "with_escaped_source": True,
             "with_escaped_render": True,
@@ -198,7 +201,7 @@ def do_component_demo(parser, token):
     .. Note::
         This templatetag is done to support fully Cotton so its own template can use
         Cotton components.
-    """
+    """  # noqa
     bits = token.split_contents()
     remaining_bits = bits[1:]
     options = template.base.token_kwargs(remaining_bits, parser)

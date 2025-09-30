@@ -7,6 +7,5 @@ References
 .. toctree::
    :maxdepth: 2
 
-   factories.rst
-   models.rst
+   templatetags.rst
    views.rst

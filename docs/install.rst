@@ -13,6 +13,9 @@ For development usage see :ref:`development_install`.
 Configuration
 *************
 
+.. Warning::
+    First you need to correctly `configure Django Cotton <https://django-cotton.com/docs/quickstart>`_.
+
 Add it to your installed Django apps in settings : ::
 
     INSTALLED_APPS = (
@@ -31,7 +34,7 @@ Then mount applications URLs: ::
         path("", include("cotton_bootstrap.urls")),
     ]
 
-And finally apply database migrations.
+There is no database migrations needed for this library.
 
 Settings
 ********
