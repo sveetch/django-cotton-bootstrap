@@ -1,0 +1,21 @@
+{% load i18n %}
+<c-vars items classes item-classes
+        type="item"
+        :container_types="{
+            'item': 'ul',
+            'link': 'div',
+            'button': 'div',
+            'checkbox': 'ul',
+            'radio': 'ul',
+        }"
+/>
+
+<{{ container_types|get_item:type }} class="list-group{% if classes %} {{ classes }}{% endif %}" {{ attrs }}>
+    {{ slot }}
+
+    {% for content in items %}
+        <c-component is="listgroup.{{ type }}" classes="{{ item_classes }}" only>
+            {{ content }}
+        </c-component>
+    {% endfor %}
+</{{ container_types|get_item:type }}>

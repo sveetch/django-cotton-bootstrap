@@ -1,0 +1,6 @@
+<c-vars classes title />
+
+<div class="d-flex justify-content-between flex-wrap p-4{% if classes %} {{ classes }}{% endif %}">
+    {% if title %}<span class="badge text-bg-primary rounded-top-0 rounded-start-0 position-absolute top-0 start-0">{{ title }}</span>{% endif %}
+    {{ slot }}
+</div>

@@ -1,0 +1,6 @@
+// No bottom margin for table element last child of their container
+// We assume their container should implement bottom margin itself to avoid annoying
+// implicit margin
+table:last-child {
+    margin-bottom: 0;
+}

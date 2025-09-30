@@ -1,0 +1,14 @@
+<c-vars classes title introduction />
+
+<div class="mt-4 mb-4{% if classes %} {{ classes }}{% endif %}">
+    {% if title %}<h2 class="mb-3">{{ title }}</h2>{% endif %}
+    {% if introduction %}
+        <div class="introduction">
+            {{ introduction }}
+        </div>
+    {% endif %}
+
+    <div class="border rounded-1">
+        {{ slot }}
+    </div>
+</div>

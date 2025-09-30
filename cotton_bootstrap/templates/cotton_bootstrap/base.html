@@ -1,9 +1,104 @@
-{% extends "skeleton.html" %}
+{% load i18n static %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}"{% block html-attrs %}{% endblock html-attrs %}>
+    <head>
+        {% spaceless %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="generator" content="{{ CottonBootstrap.release }}">
+            {# djlint:off #}<title>{% block header-title %}Django Cotton Bootstrap{% endblock header-title %}</title>{# djlint:on #}
+            {% block metas %}
+                {% block metas-robot %}
+                    <meta name="robots" content="noindex, nofollow">
+                {% endblock metas-robot %}
+                {% block metas-generic %}
+                {% endblock metas-generic %}
+            {% endblock metas %}
+            {% block header-manifest %}
+            {% endblock header-manifest %}
+            {% block header-javascript %}
+            {% endblock header-javascript %}
+            {% block header-resource %}
+                {% comment %}TODO: Move this into an include that can be overwritten{% endcomment %}
+                <link rel="stylesheet" href="{% static "cotton_bootstrap/css/bootstrap.css" %}">
+                <link rel="stylesheet" href="{% static "cotton_bootstrap/css/main.css" %}">
+            {% endblock header-resource %}
+            {% block header-resource-extra %}
+            {% endblock header-resource-extra %}
+        {% endspaceless %}
+    </head>
 
-{% block content %}
-<div>
-    <h1>Django Cotton Bootstrap</h1>
+    <body class="{% block body-classes %}{% endblock body-classes %}" {% block body-attrs %}{% endblock body-attrs %}>
+        {% block body-container %}
+            {% spaceless %}
+                <div class="layout-base">
+                    <div class="cb-brand">
+                        <button class="class-toggler"
+                                type="button"
+                                data-target="body"
+                                data-target-css="main-menu-opened"
+                                aria-label="{% trans "Toggle menu" %}"
+                                aria-expanded="false"></button>
 
-    {% block app_content %}{% endblock app_content %}
-</div>
-{% endblock content %}
+                        <a href="/"><small>Django</small><br>Cotton Bootstrap</a>
+                    </div>
+
+                    <div id="main-menu" class="page-menu">
+
+                        <ul class="menu-apps">
+                            {% comment %}{% include "cotton_bootstrap/partials/menu-apps_sample.html" %}{% endcomment %}
+
+                            <li class="section">
+                                <p class="title"><i class="bi bi-menu-button-wide-fill"></i> Components</p>
+
+                                <ul>
+                                    {% for name, component in ENABLED_COMPONENT_DEMOS.items %}
+                                        <li>
+                                            <a {% if name == BOOTSTRAP_COTTON_CURRENT_NAME %}class="active"{% endif %} href="{% url component.urlname %}">{{ component.title }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+
+                    </div>
+                    {% include "cotton_bootstrap/partials/color_mode_toggler.html" %}
+
+                    {% block page-context %}
+                        <div class="page-context">
+                            {% block page-title %}
+                                <div class="page-title">
+                                    {% block title-content %}{% endblock title-content %}
+                                </div>
+                            {% endblock page-title %}
+                            {% block page-submenu %}
+                                {% comment %}<div class="page-submenu">
+                                    {% block submenu-content %}{% endblock submenu-content %}
+                                </div>{% endcomment %}
+                            {% endblock page-submenu %}
+                        </div>
+                    {% endblock page-context %}
+
+                    <div class="page-content{% block content-classes %}{% endblock content-classes %}">
+                        {% comment %}{% block breadcrumbs %}
+                            {% render_breadcrumbs "view_breadcrumbs/bootstrap5.html" %}
+                        {% endblock breadcrumbs %}{% endcomment %}
+
+                        <div class="main-content container-xxl">
+                            {% block content %}{% endblock content %}
+                        </div>
+
+                        {% block content-sidebar %}{% endblock content-sidebar %}
+                    </div>
+                </div>
+            {% endspaceless %}
+        {% endblock body-container %}
+        {% spaceless %}
+            {% block body-javascript %}
+                {% comment %}TODO: Move this into an include that can be overwritten{% endcomment %}
+                <script src="{% static "cotton_bootstrap/js/main.js" %}"></script>
+            {% endblock body-javascript %}
+            {% block body-javascript-extra %}
+            {% endblock body-javascript-extra %}
+        {% endspaceless %}
+    </body>
+</html>

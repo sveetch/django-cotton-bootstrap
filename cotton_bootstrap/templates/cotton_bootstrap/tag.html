@@ -1,0 +1,9 @@
+{% if with_render %}
+    <c-demo.example>{{ rendered|safe }}</c-demo.example>
+{% endif %}
+{% if with_escaped_source %}
+    <c-demo.code title="Source">{{ pygmented_source|safe }}</c-demo.code>
+{% endif %}
+{% if with_escaped_render %}
+    <c-demo.code title="HTML">{{ pygmented_render|safe }}</c-demo.code>
+{% endif %}

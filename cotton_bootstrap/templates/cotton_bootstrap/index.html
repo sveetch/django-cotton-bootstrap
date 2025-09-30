@@ -1,0 +1,251 @@
+{% extends "cotton_bootstrap/base.html" %}
+{% load static i18n cotton_demo %}
+
+{% block title-content %}
+    <h1>Bootstrap components</h1>
+{% endblock title-content %}
+
+{% block content %}
+    <div class="mb-5 text-center">
+        <div class="p-3 bg-info-subtle text-info-emphasis">
+            Here we have primitive Bootstrap components that can be used to build more specific layout components.
+        </div>
+    </div>
+
+    <c-demo.section title="Buttons">
+        <c-demo.part title="Base class">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-button>Base class</c-button>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Variants">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    {% for name in BOOTSTRAP_COTTON_CONTEXT.button_variants %}
+                        <c-button url="#" color="{{ name }}">{{ name|capfirst }}</c-button>
+                    {% endfor %}
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Outline">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    {% for name in BOOTSTRAP_COTTON_CONTEXT.button_variants %}
+                        <c-button url="#" color="{{ name }}" outline>{{ name|capfirst }}</c-button>
+                    {% endfor %}
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+    </c-demo.section>
+
+    <hr class="my-5 border-5">
+
+    <c-demo.section title="Flex grid">
+        <c-slot name="introduction">
+            <p>This is the default <a href="https://getbootstrap.com/docs/5.3/layout/grid/">Grid</a> from Bootstrap 5.</p>
+        </c-slot>
+
+        <c-demo.part title="Container">
+            <c-slot name="introduction">
+                <p>You may also directly use the container component if needed. Value from component attribute <code>classes</code> is merged into value from element attribute <code>class</code>. Any other component attributes will be included as it is.</p>
+            </c-slot>
+
+            {% component_demo with_render=False %}
+                {% cotton_verbatim %}
+                    <c-flexgrid.container classes="border" id="foo">
+                        Content
+                    </c-flexgrid.container>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Row">
+            <c-slot name="introduction">
+                <p>This is the component to create a grid row. Value from component attribute <code>classes</code> is merged into value from element attribute <code>class</code>. Any other component attributes will be included as it is.</p>
+            </c-slot>
+
+            {% component_demo with_render=False %}
+                {% cotton_verbatim %}
+                    <c-flexgrid.row classes="border" id="foo">
+                        Content
+                    </c-flexgrid.row>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Column">
+            <c-slot name="introduction">
+                <p>This is the component to create a row column. Value from component attribute <code>classes</code> is merged into element attribute value <code>class</code>. Any other component attributes will be included as it is.</p>
+            </c-slot>
+
+            {% component_demo with_render=False %}
+                {% cotton_verbatim %}
+                    <c-flexgrid.column classes="text-center" id="bar">
+                        Content
+                    </c-flexgrid.column>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Flexgrid">
+            <c-slot name="introduction">
+                <p><code>&lt;c-flexgrid/&gt;</code> component is just a proxy name to the container component.</p>
+                <p>Here is a sample of creating a complete grid with components.</p>
+            </c-slot>
+
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-flexgrid id="foo" only>
+
+                        <c-flexgrid.row classes="row-cols-4">
+                            <c-flexgrid.column classes="border">
+                                <p>Pew! Pew!</p>
+                            </c-flexgrid.column>
+
+                            <c-flexgrid.column id="bar">
+                                <p>Pan! Pan!</p>
+                            </c-flexgrid.column>
+                        </c-flexgrid.row>
+
+                    </c-flexgrid>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+    </c-demo.section>
+
+    <hr class="my-5 border-5">
+
+    <c-demo.section title="Cards">
+        <c-demo.part title="Basic card">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-card title="{% translate "Notices index" %}"
+                            url="https://perdu.com">
+                        {% translate "Where you will find all Notice objects." %}
+                    </c-card>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="With button title">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-card title="{% translate "Language index" %}"
+                            url="https://perdu.com"
+                            button_title="Go">
+                        {% translate "Where you will find all Language objects." %}
+                    </c-card>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Inside a grid">
+            <c-slot name="introduction">
+                <p>As a sample of insertion in a grid.</p>
+            </c-slot>
+
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-flexgrid classes="border" only>
+                        <c-flexgrid.row>
+                            <c-flexgrid.column>
+                                <c-card title="{% translate "Notices index" %}"
+                                        url="https://perdu.com">
+                                    {% translate "Where you will find all Notice objects." %}
+                                </c-card>
+                            </c-flexgrid.column>
+                            <c-flexgrid.column>
+                                <p>Pew! Pew!</p>
+                            </c-flexgrid.column>
+                            <c-flexgrid.column>
+                                <c-card title="{% translate "Notices index" %}"
+                                        url="https://perdu.com">
+                                    {% translate "Where you will find all Notice objects." %}
+                                </c-card>
+                            </c-flexgrid.column>
+                        </c-flexgrid.row>
+                    </c-flexgrid>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+    </c-demo.section>
+
+    <hr class="my-5 border-5">
+
+    <c-demo.section title="List group">
+        <c-demo.part title="As a list 'item' type">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-listgroup classes="list-group-numbered" only>
+                        {% for i in "1234"|make_list %}
+                            <c-listgroup.item classes="text-uppercase" only>
+                                Item {{ i }}
+                            </c-listgroup.item>
+                        {% endfor %}
+                    </c-listgroup>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="As a list 'link' type">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-listgroup classes="list-group-numbered" only>
+                        {% for i in "1234"|make_list %}
+                            <c-listgroup.link classes="text-uppercase" url="#{{ i }}" only>
+                                Item {{ i }}
+                            </c-listgroup.link>
+                        {% endfor %}
+                    </c-listgroup>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="As a list 'button' type">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-listgroup classes="list-group-numbered" only>
+                        {% for i in "1234"|make_list %}
+                            <c-listgroup.button only>
+                                Item {{ i }}
+                            </c-listgroup.button>
+                        {% endfor %}
+                    </c-listgroup>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Handcrafted">
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-listgroup type="link" only>
+                        <c-listgroup.link classes="text-uppercase" active only>
+                            {% lorem 15 w random %}
+                        </c-listgroup.link>
+
+                        <c-listgroup.link url="https://perdu.com"
+                                        only>
+                            {% lorem 15 w random %}
+                        </c-listgroup.link>
+
+                        <c-listgroup.checkbox input_id="fake-lg-checkbox" only>
+                            {% lorem 15 w random %}
+                        </c-listgroup.checkbox>
+
+                        <c-listgroup.radio input_id="fake-lg-radio" only>
+                            {% lorem 15 w random %}
+                        </c-listgroup.radio>
+
+                        <c-listgroup.button id="submit-fake" data-bs-toggle="button" type="submit" only>
+                            {% lorem 15 w random %}
+                        </c-listgroup.button>
+                    </c-listgroup>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+    </c-demo.section>
+{% endblock content %}

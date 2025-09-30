@@ -6,17 +6,6 @@
 */
 
 //
-// Make jQuery object usable inside modules
-//
-//import $ from "jquery";
-
-//
-// Make jQuery object usable from templates
-//
-//window.jQuery = $;
-//window.$ = $;
-
-//
 // Make Bootstrap components usable from templates (like "bootstrap.Modal(..)")
 //
 window.bootstrap = require("bootstrap/dist/js/bootstrap.bundle.js");
@@ -44,3 +33,14 @@ import {
 //
 // var myModal = new Modal(document.getElementById("exampleModalDefault"));
 // myModal.show();
+
+import { BootstrapColorMode } from "./components/color-modes";
+import { CssClassToggler } from "./components/cssclass-toggler";
+
+///
+/// Initialize components after DOM is loaded
+///
+document.addEventListener("DOMContentLoaded", function () {
+    BootstrapColorMode();
+    CssClassToggler();
+});

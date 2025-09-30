@@ -1,0 +1,9 @@
+{% load i18n %}
+<c-vars classes input_id input_name input_value />
+
+<a class="list-group-item{% if active is True %} active{% endif %}{% if classes %} {{ classes }}{% endif %}"
+    {% if url %} href="{{ url }}"{% endif %}
+    {{ attrs }}>
+    {{ slot }}
+</a>
+

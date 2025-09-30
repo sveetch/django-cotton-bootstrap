@@ -1,0 +1,6 @@
+{% load i18n %}
+<c-vars classes />
+
+<li class="list-group-item{% if active is True %} active{% endif %}{% if classes %} {{ classes }}{% endif %}" {{ attrs }}>
+    {{ slot }}
+</li>

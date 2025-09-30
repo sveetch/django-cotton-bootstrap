@@ -1,0 +1,11 @@
+///
+/// Page contents
+///
+
+.page-content {
+    background-color: var(--#{$cbprefix}content-bg);
+}
+
+.main-content {
+    padding: space("normal");
+}

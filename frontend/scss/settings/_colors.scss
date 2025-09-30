@@ -1,6 +1,54 @@
 ///
 /// Site color setting variables
 ///
-/// Here you may define your layout color settings that could drive both Bootstrap and
-///  your custom components
+
 ///
+// All named colors
+///
+/* stylelint-disable color-no-hex */
+$cb-colors: (
+    "white": #fff,
+    "white-cloud": #dee2e6,
+    "dark": #212529,
+    "darkest": #1b1f22,
+    "gray-100": #f8f9fa,
+    "gray-300": #dee2e6,
+    "gray-600": #6c757d,
+    "gray-800": #343a40,
+    "gray-900": #212529,
+    "blue": #0d6efd,
+    "blue-300": #6ea8fe,
+    "blue-600": #0a58ca,
+    "pink": #d63384,
+    "pink-300": #e685b5,
+    "pink-600": #ab296a,
+);
+/* stylelint-enable color-no-hex */
+
+$cb-theme-light: (
+    "body-bg": cbcolor("white"),
+    "body-color": cbcolor("gray-900"),
+    "menu-bg": cbcolor("dark"),
+    "menu-color": cbcolor("white-cloud"),
+    "menu-emphasis": cbcolor("white"),
+    "menu-subtle": cbcolor("gray-600"),
+    "menu-hover-bg": cbcolor("gray-800"),
+    "context-bg": cbcolor("white"),
+    "context-color": cbcolor("gray-900"),
+    "context-emphasis": cbcolor("gray-600"),
+    "context-subtle": cbcolor("gray-300"),
+    "content-bg": cbcolor("gray-100"),
+    "callout-link": cbcolor("blue-600"),
+    "callout-code-color": cbcolor("pink-600"),
+);
+
+// NOTE: The Menu keeps the same colors in all color modes
+$cb-theme-dark: (
+    "context-bg": cbcolor("dark"),
+    "context-color": cbcolor("white-cloud"),
+    "context-emphasis": cbcolor("gray-600"),
+    "context-subtle": cbcolor("gray-600"),
+    "callout-link": cbcolor("blue-300"),
+    "callout-code-color": cbcolor("pink-300"),
+    "content-bg": cbcolor("darkest"),
+);

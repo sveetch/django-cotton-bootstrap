@@ -1,0 +1,17 @@
+///
+/// Additional django-cotton-bootstrap CSS variables for color themes
+/// This uses the Bootstrap theme name for compatibility on the color switcher
+///
+
+:root,
+[data-bs-theme="light"] {
+    @each $name, $value in $cb-theme-light {
+        --#{$cbprefix}#{$name}: #{$value};
+    }
+}
+
+@include cb-color-mode(dark, true) {
+    @each $name, $value in $cb-theme-dark {
+        --#{$cbprefix}#{$name}: #{$value};
+    }
+}

@@ -1,0 +1,8 @@
+{% extends "cotton_bootstrap/base.html" %}
+{% load static i18n cotton_demo %}
+
+{% block header-title %} {{ BOOTSTRAP_COTTON_CURRENT_COMPONENT.title }} - {{ block.super }}{% endblock header-title %}
+
+{% block title-content %}
+    <h1>{{ BOOTSTRAP_COTTON_CURRENT_COMPONENT.title }}</h1>
+{% endblock title-content %}

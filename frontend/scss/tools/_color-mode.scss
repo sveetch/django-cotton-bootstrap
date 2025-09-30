@@ -1,0 +1,22 @@
+// Copied from Bootstrap 5.3.8 but renamed with prefix 'cb-'
+$cb-color-mode-type: data;
+
+@mixin cb-color-mode($mode: light, $root: false) {
+  @if $cb-color-mode-type == "media-query" {
+    @if $root == true {
+      @media (prefers-color-scheme: $mode) {
+        :root {
+          @content;
+        }
+      }
+    } @else {
+      @media (prefers-color-scheme: $mode) {
+        @content;
+      }
+    }
+  } @else {
+    [data-bs-theme="#{$mode}"] {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+///
+/// Page brand
+///
+
+.cb-brand {
+    @include font-size(1rem);
+    color: var(--#{$cbprefix}menu-emphasis);
+    display: flex;
+    height: $layout-head-height;
+    padding: space("shorter") space("normal");
+    justify-content: center;
+    align-items: center;
+    font-weight: $font-weight-bold;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: var(--#{$cbprefix}menu-bg);
+    border-bottom: $onepixel solid var(--#{$cbprefix}menu-subtle);
+
+    @include cb-media-breakpoint-up($layout-breakpoint) {
+        border-right: $onepixel solid var(--#{$cbprefix}menu-subtle);
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    img {
+        width: rem-calc(40px);
+        margin-right: space("shorter");
+    }
+
+    .class-toggler {
+        @include cb-flex(0, 0, 2rem);
+        display: flex;
+        margin-right: 1.5rem;
+        font-size: 2rem;
+        color: inherit;
+        background: transparent;
+        border: 0;
+
+        &::after {
+            //@include bb-icon(map-get($bootstrap-icons-map, "list"));
+        }
+
+        &.is-active {
+            &::after {
+                //content: map-get($bootstrap-icons-map, "x-lg");
+            }
+        }
+
+        @include cb-media-breakpoint-up($layout-breakpoint) {
+            display: none;
+        }
+    }
+}

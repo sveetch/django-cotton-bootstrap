@@ -1,0 +1,16 @@
+{% load i18n %}
+<c-vars classes input_id input_name input_value />
+
+<li class="list-group-item{% if active is True %} active{% endif %}{% if classes %} {{ classes }}{% endif %}"
+    {{ attrs }}>
+    <input class="form-check-input me-1"
+           type="checkbox"
+           value="{{ input_value }}"
+           {% if input_name %} name="{{ input_name }}"{% endif %}
+           {% if input_id %} id="{{ input_id }}"{% endif %}>
+
+    <label class="form-check-label"
+           {% if input_id %} for="{{ input_id }}"{% endif %}>
+        {{ slot }}
+    </label>
+</li>

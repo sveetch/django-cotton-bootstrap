@@ -1,0 +1,23 @@
+//
+// Helper and object related to Bootstrap themes
+// This something we want to adopt Bootstrap variables for compatibility
+//
+
+:root,
+[data-bs-theme="light"] {
+    .show-for-light-theme {
+        display: block !important;
+    }
+    .show-for-dark-theme {
+        display: none !important;
+    }
+}
+
+@include cb-color-mode(dark, true) {
+    .show-for-light-theme {
+        display: none !important;
+    }
+    .show-for-dark-theme {
+        display: block !important;
+    }
+}

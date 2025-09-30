@@ -1,0 +1,77 @@
+{% extends "cotton_bootstrap/components/base.html" %}
+{% load static i18n cotton_demo %}
+
+{% block content %}
+    <c-demo.section>
+        <c-slot name="introduction">
+            <p>This is the default <a href="https://getbootstrap.com/docs/5.3/layout/grid/">Grid</a> from Bootstrap 5.</p>
+        </c-slot>
+
+        <c-demo.part title="Container">
+            <c-slot name="introduction">
+                <p>Value from component attribute <code>classes</code> is merged into value from element attribute <code>class</code>. Any other component attributes will be included as it is.</p>
+            </c-slot>
+
+            {% component_demo with_render=False %}
+                {% cotton_verbatim %}
+                    <c-flexgrid.container classes="border" id="foo">
+                        Content
+                    </c-flexgrid.container>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Row">
+            <c-slot name="introduction">
+                <p>This is the component to create a grid row. Value from component attribute <code>classes</code> is merged into value from element attribute <code>class</code>. Any other component attributes will be included as it is.</p>
+            </c-slot>
+
+            {% component_demo with_render=False %}
+                {% cotton_verbatim %}
+                    <c-flexgrid.row classes="border" id="foo">
+                        Content
+                    </c-flexgrid.row>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Column">
+            <c-slot name="introduction">
+                <p>This is the component to create a row column. Value from component attribute <code>classes</code> is merged into element attribute value <code>class</code>. Any other component attributes will be included as it is.</p>
+            </c-slot>
+
+            {% component_demo with_render=False %}
+                {% cotton_verbatim %}
+                    <c-flexgrid.column classes="text-center" id="bar">
+                        Content
+                    </c-flexgrid.column>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+
+        <c-demo.part title="Flexgrid">
+            <c-slot name="introduction">
+                <p><code>&lt;c-flexgrid/&gt;</code> component is just a proxy name to the container component.</p>
+                <p>Here is a sample of creating a complete grid with components.</p>
+            </c-slot>
+
+            {% component_demo %}
+                {% cotton_verbatim %}
+                    <c-flexgrid id="foo" only>
+
+                        <c-flexgrid.row classes="row-cols-4">
+                            <c-flexgrid.column classes="border">
+                                <p>Pew! Pew!</p>
+                            </c-flexgrid.column>
+
+                            <c-flexgrid.column id="bar">
+                                <p>Pan! Pan!</p>
+                            </c-flexgrid.column>
+                        </c-flexgrid.row>
+
+                    </c-flexgrid>
+                {% endcotton_verbatim %}
+            {% endcomponent_demo %}
+        </c-demo.part>
+    </c-demo.section>
+{% endblock content %}

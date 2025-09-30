@@ -1,20 +1,19 @@
 from django.urls import path
+from django.conf import settings
 
-from .views import (
-    BlogIndexView, BlogDetailView,
-    ArticleDetailView,
-)
+from .views import IndexView, ComponentView
 
 
 app_name = "cotton_bootstrap"
 
 
 urlpatterns = [
-    path("", BlogIndexView.as_view(), name="blog-index"),
-    path("<int:blog_pk>/", BlogDetailView.as_view(), name="blog-detail"),
+    path("", IndexView.as_view(), name="index"),
+] + [
     path(
-        "<int:blog_pk>/<int:article_pk>/",
-        ArticleDetailView.as_view(),
-        name="article-detail"
-    ),
+        "{}/".format(name),
+        ComponentView.as_view(component_name=name),
+        name="component-{}".format(name)
+    )
+    for name in settings.ENABLED_COMPONENT_DEMOS
 ]

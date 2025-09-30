@@ -159,6 +159,29 @@ LOGOUT_REDIRECT_URL = "/"
 FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 
 
+"""
+Django Cotton configuration
+
+We use the "custom configuration" way.
+"""
+
+INSTALLED_APPS.append("django_cotton.apps.SimpleAppConfig")
+
+TEMPLATES[0]["OPTIONS"]["loaders"] = [(
+    "django.template.loaders.cached.Loader",
+    [
+        "django_cotton.cotton_loader.Loader",
+        "django.template.loaders.filesystem.Loader",
+        "django.template.loaders.app_directories.Loader",
+    ],
+)]
+
+# This option must be disabled when defining loaders
+TEMPLATES[0]["APP_DIRS"] = False
+
+TEMPLATES[0]["OPTIONS"]["builtins"] = [
+    "django_cotton.templatetags.cotton"
+]
 
 
 """

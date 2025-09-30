@@ -1,0 +1,24 @@
+///
+/// Spacing utilities.
+///
+/// Depends on:
+///
+/// - ../defaults
+/// - ./functions
+/// - Bootstrap variable "$spacers"
+///
+
+///
+/// Shortcut helper to get a space size from Bootstrap '$spacers' map
+///
+/// @arg {String} $name [null]
+///   The item key in '$spacers'.
+///
+/// @example scss
+///   space(2);
+///   space("normal");
+///
+///
+@function space($name) {
+    @return map-get($cb-spacers, $name);
+}

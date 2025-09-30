@@ -1,0 +1,6 @@
+<c-vars classes title />
+
+<div class="highlight-container border-top font-monospace{% if classes %} {{ classes }}{% endif %}">
+    {% if title %}<span class="badge text-bg-secondary rounded-top-0 rounded-start-0 position-absolute top-0 start-0">{{ title }}</span>{% endif %}
+    {{ slot|safe }}
+</div>

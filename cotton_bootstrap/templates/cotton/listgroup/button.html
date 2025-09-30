@@ -1,0 +1,7 @@
+{% load i18n %}
+<c-vars classes input_id input_name input_value type="button" />
+
+<button type="{{ type }}" class="list-group-item{% if active is True %} active{% endif %}{% if classes %} {{ classes }}{% endif %}" {{ attrs }}>
+    {{ slot }}
+</button>
+

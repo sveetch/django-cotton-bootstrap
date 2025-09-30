@@ -1,9 +1,8 @@
-from .blog import BlogIndexView, BlogDetailView
-from .article import ArticleDetailView
+from .index import IndexView
+from .component import ComponentView
 
 
 __all__ = [
-    "BlogIndexView",
-    "BlogDetailView",
-    "ArticleDetailView",
+    "IndexView",
+    "ComponentView",
 ]

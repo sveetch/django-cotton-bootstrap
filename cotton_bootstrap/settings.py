@@ -6,14 +6,23 @@ These are the default settings you can override in your own project settings
 right after the line which load the default app settings.
 
 """
-BLOG_PAGINATION = 5
-"""
-Blog entry per page limit for pagination, set it to ``None`` to disable
-pagination.
-"""
+ENABLED_COMPONENT_DEMOS = {
+    "buttons": {"title": "Buttons"},
+    "flexgrid": {"title": "Flex grid"},
+    "card": {"title": "Card"},
+    "listgroup": {"title": "List group"},
+}
 
-ARTICLE_PAGINATION = 6
-"""
-Article entry per page limit for pagination, set it to ``None`` to disable
-pagination.
-"""
+BOOTSTRAP_CONTEXT = {
+    "button_variants": [
+        "primary",
+        "secondary",
+        "success",
+        "danger",
+        "warning",
+        "info",
+        "light",
+        "dark",
+        "link",
+    ],
+}

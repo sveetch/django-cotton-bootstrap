@@ -18,7 +18,7 @@ module.exports = {
 
     // Built JS files goes into sandbox staticfile directory
     output: {
-        path: Path.resolve("../sandbox/static-sources/js"),
+        path: Path.resolve("../cotton_bootstrap/static/cotton_bootstrap/js"),
         //filename: "[name]-[contenthash].js",
         filename: "[name].js",
         publicPath: "/static/js/",
@@ -46,7 +46,7 @@ module.exports = {
     // Enabled webpack plugins with their config
     plugins: [
         new BundleTracker({
-            path: Path.join(__dirname, '../sandbox/static-sources'),
+            path: Path.join(__dirname, '../var'),
             filename: 'webpack-stats.json'
         })
     ],

@@ -1,0 +1,24 @@
+///
+/// Page context container
+///
+
+.page-context {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: space("shorter") space("large");
+    color: var(--#{$cbprefix}context-color);
+    background-color: var(--#{$cbprefix}context-bg);
+    border-bottom: $onepixel solid var(--#{$cbprefix}context-subtle);
+
+    .page-title {
+        h1 {
+            @include font-size($h4-font-size);
+            margin: 0;
+
+            @include cb-media-breakpoint-up($layout-breakpoint) {
+                @include font-size($h2-font-size);
+            }
+        }
+    }
+}

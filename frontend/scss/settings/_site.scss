@@ -1,7 +1,7 @@
 ///
 /// Site setting variables
 ///
-/// This must be loaded before Bootstrap variables
+/// We copied and included some common variables from Bootstrap but prefixed with 'cb-'
 ///
 
 // One pixel shortcut
@@ -9,3 +9,97 @@ $onepixel: 0.0625rem; // For 1rem = 16px
 // Debug line to possibly calibrate it again when default Bootstrap base size has been
 // changed
 // @debug "One pixel is " + rem-calc(1px);
+
+
+// Layout structure parameters
+$layout-menu-width: rem-calc(260px);
+$layout-head-height: rem-calc(95px);
+$layout-menu-padding-x: space("normal");
+$layout-breakpoint: lg;
+
+
+// The base typography settings from Bootstrap
+// TODO: Everything should be prefixed with 'cb-' to avoid clash with Bootstrap
+// variables (look before if some names are not used from RFS tool)
+$font-size-root: null;
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * .875;
+$font-size-lg: $font-size-base * 1.25;
+
+$font-weight-lighter: lighter;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder;
+
+$font-weight-base: $font-weight-normal;
+
+$line-height-base: 1.5;
+$line-height-sm: 1.25;
+$line-height-lg: 2;
+
+$h1-font-size: $font-size-base * 2.5;
+$h2-font-size: $font-size-base * 2;
+$h3-font-size: $font-size-base * 1.75;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base * 1.25;
+$h6-font-size: $font-size-base;
+
+$font-sizes: (
+    1: $h1-font-size,
+    2: $h2-font-size,
+    3: $h3-font-size,
+    4: $h4-font-size,
+    5: $h5-font-size,
+    6: $h6-font-size
+);
+
+// Some additional small sizes
+$small1-font-size: 0.875rem;
+$small2-font-size: 0.75rem;
+$small3-font-size: 0.625rem;
+
+// Set all the font sizes from bigger to smaller
+$cb-small-sizes: (
+    1: $small1-font-size,
+    2: $small2-font-size,
+    3: $small3-font-size,
+);
+
+$cb-grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1400px
+);
+
+$cb-spacer: 1rem;
+$cb-spacers: (
+    0: 0,
+    1: $cb-spacer * .25,
+    2: $cb-spacer * .5,
+    3: $cb-spacer,
+    4: $cb-spacer * 1.5,
+    5: $cb-spacer * 3,
+    "thin": 0.1rem,
+    "tiny": 0.25rem,
+    "shorter": 0.5rem,
+    "short": 0.75rem,
+    "normal": 1rem,
+    "large": 1.5rem,
+    "larger": 2rem,
+    "wide": 3rem,
+    "wider": 5rem,
+);
+
+$cb-btn-padding-y: .5rem;
+$cb-btn-padding-x: 1rem;
+
+$cb-border-radius: .5rem;
+
+// Enabled callout object variants
+$callout-variants: info, warning, danger !default;
