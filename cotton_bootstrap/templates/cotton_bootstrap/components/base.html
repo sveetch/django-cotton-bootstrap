@@ -3,6 +3,13 @@
 
 {% block header-title %} {{ BOOTSTRAP_COTTON_CURRENT_COMPONENT.title }} - {{ block.super }}{% endblock header-title %}
 
-{% block title-content %}
-    <h1>{{ BOOTSTRAP_COTTON_CURRENT_COMPONENT.title }}</h1>
-{% endblock title-content %}
+{% block page-context %}{% endblock page-context %}
+
+{% block page-content %}
+    <div class="page-title">
+        {% block title-content %}<h1>{{ BOOTSTRAP_COTTON_CURRENT_COMPONENT.title }}</h1>{% endblock title-content %}
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+{% endblock page-content %}

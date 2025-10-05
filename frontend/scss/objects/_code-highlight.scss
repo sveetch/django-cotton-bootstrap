@@ -189,14 +189,32 @@
 .highlight-container {
     position: relative;
     padding: space("large");
+    font-family: $cb-font-monospace;
 
     .highlight {
         pre {
             margin: 0;
         }
+
         // Hide whitespace element keeping it space in place
         .w {
             visibility: hidden;
         }
+    }
+
+    .tag {
+        //  text-bg-secondary rounded-top-0 rounded-start-0
+        @include font-size($small2-font-size);
+        display: inline-block;
+        padding: space("tiny") space("shorter");
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-weight: $font-weight-bold;
+        line-height: 1;
+        color: var(--bs-badge-color);
+        text-align: center;
+        white-space: nowrap;
+        border-bottom-right-radius: $cb-border-radius-lg;
     }
 }

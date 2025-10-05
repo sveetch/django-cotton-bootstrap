@@ -1,0 +1,54 @@
+//
+// Application demonstration objects
+//
+
+.demo-section {
+    padding: space("shorter") space("large");
+
+    & > .introduction {
+        @include font-size($h5-font-size);
+        margin-bottom: space("normal");
+    }
+
+    .demo-part {
+        margin: space("large") 0;
+
+        .demo-part-title {
+             margin-bottom: space("normal");
+        }
+
+        & > .introduction {
+             margin-bottom: space("normal");
+        }
+
+        & > .showcase {
+            border: $onepixel solid var(--#{$cbprefix}body-subtle);
+            border-radius: $cb-border-radius;
+
+            .result {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: space("large");
+                // Adopt Bootstrap theme
+                color: var(--bs-body-color);
+                background: var(--bs-body-bg);
+            }
+
+            .result + .highlight-container,
+            .highlight-container + .highlight-container {
+                border-top: $onepixel solid var(--#{$cbprefix}body-subtle);
+            }
+
+            & > :first-child {
+                border-top-left-radius: $cb-border-radius;
+                border-top-right-radius: $cb-border-radius;
+            }
+
+            & > :last-child {
+                border-bottom-left-radius: $cb-border-radius;
+                border-bottom-right-radius: $cb-border-radius;
+            }
+        }
+    }
+}

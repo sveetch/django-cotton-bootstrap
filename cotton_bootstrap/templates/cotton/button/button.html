@@ -1,0 +1,6 @@
+<c-vars classes tag is color outline disabled url value type="button" />
+
+<button class="btn{% if color %} btn{% if outline is True %}-outline{% endif %}-{{ color }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
+   type="{{ type }}" {% if disabled is True %} disabled{% endif %} {{ attrs }}>
+   {{ slot }}
+</button>

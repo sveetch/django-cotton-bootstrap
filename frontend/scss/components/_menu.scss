@@ -13,13 +13,9 @@
 }
 
 .page-menu {
-    --bs-emphasis-color-rgb: var(--#{$cbprefix}menu-emphasis);
-
-    color: var(--#{$cbprefix}menu-color);
-    background-color: var(--#{$cbprefix}menu-bg);
     border-right: $onepixel solid var(--#{$cbprefix}menu-subtle);
 
-    .menu-apps {
+    .navigation {
         margin: 0;
         padding: space("normal") space("normal");
         list-style: none;
@@ -37,14 +33,14 @@
             }
 
             &.active {
-                color: var(--#{$cbprefix}menu-emphasis);
+                //color: var(--#{$cbprefix}menu-emphasis);
                 font-weight: bold;
             }
 
             &:hover {
                 color: var(--#{$cbprefix}menu-emphasis);
                 background-color: var(--#{$cbprefix}menu-hover-bg);
-                border-radius: $cb-border-radius;
+                border-radius: $cb-border-radius-lg;
 
                 .bi,
                 .icon {
@@ -126,7 +122,7 @@
                 &:hover {
                     color: var(--#{$cbprefix}menu-emphasis);
                     background-color: var(--#{$cbprefix}menu-hover-bg);
-                    border-radius: $cb-border-radius;
+                    border-radius: $cb-border-radius-lg;
 
                     .bi,
                     .icon {

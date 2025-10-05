@@ -26,16 +26,20 @@ $cbprefix: cb-;
 @import "./tools/spacing";
 @import "./tools/color-mode";
 
+// HTML elements
+@import "./elements/html";
+@import "./elements/body";
+
 // Generic rules
-@import "./generic/html";
 @import "./generic/table";
 @import "./generic/typography";
 
 // Objects
 @import "./objects/color-mode";
 @import "./objects/theming";
-@import "./objects/pygments";
+@import "./objects/code-highlight";
 @import "./objects/brand";
+@import "./objects/demo";
 
 // Components
 @import "./components/layout";

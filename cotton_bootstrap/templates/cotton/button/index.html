@@ -1,15 +1,11 @@
-<c-vars classes color outline disabled url input_id input_name input_value
-        tag="link"
-        :tags="{
-            'link': 'a',
-            'button': 'button',
-            'input': 'input',
-        }" />
-
-<{{ tags|get_item:tag }} class="btn{% if color %} btn{% if outline is True %}-outline{% endif %}-{{ color }}{% endif %}{% if classes %} {{ classes }}{% endif %}"
-   role="button"
-   {% if url %}href="{{ url }}"{% endif %}
-   {{ attrs }}
-   {% if disabled is True %} disabled{% endif %}>
-    {{ slot }}
-</{{ tags|get_item:tag }}>
+<c-vars classes tag color outline disabled url type value tag="link" />
+<c-component is="button.{{ tag }}"
+             :classes="classes"
+             :color="color"
+             :outline="outline"
+             :disabled="disabled"
+             :url="url"
+             :type="type"
+             :value="value"
+             :attrs="attrs"
+             only>{{ slot }}</c-component>

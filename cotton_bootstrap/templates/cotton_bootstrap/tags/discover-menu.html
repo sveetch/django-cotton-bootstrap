@@ -1,0 +1,13 @@
+<div class="page-context">
+    <ul class="navigation">
+        {% for part in parts %}
+            <li><a href="#{{ part.slug }}">{{ part.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="page-content">
+    <div class="demo-section">
+        {{ source }}
+    </div>
+</div>

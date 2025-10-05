@@ -4,9 +4,9 @@
 
 .color-mode-switcher {
     position: absolute !important;
-    left: 0;
-    bottom: 0;
-    color: var(--#{$cbprefix}menu-color);
+    left: 1rem;
+    bottom: 1rem;
+    color: var(--#{$cbprefix}body-color);
 
     @include cb-media-breakpoint-down(lg) {
         left: auto;

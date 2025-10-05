@@ -3,32 +3,60 @@
 
 {% block content %}
     <c-demo.section>
-        <c-demo.part title="Base class">
-            {% component_demo %}
-                {% cotton_verbatim %}
-                    <c-button>Base class</c-button>
-                {% endcotton_verbatim %}
-            {% endcomponent_demo %}
-        </c-demo.part>
+        {% discover_menu title=BOOTSTRAP_COTTON_CURRENT_COMPONENT.title %}
+            <c-demo.part title="Base class">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        <c-button>Base class</c-button>
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
 
-        <c-demo.part title="Variants">
-            {% component_demo %}
-                {% cotton_verbatim %}
-                    {% for name in BOOTSTRAP_COTTON_CONTEXT.button_variants %}
-                        <c-button url="#" color="{{ name }}">{{ name|capfirst }}</c-button>
-                    {% endfor %}
-                {% endcotton_verbatim %}
-            {% endcomponent_demo %}
-        </c-demo.part>
+            <c-demo.part title="Variants">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        {% for name in BOOTSTRAP_COTTON_CONTEXT.button_variants %}
+                            <c-button url="#" color="{{ name }}">{{ name|capfirst }}</c-button>
+                        {% endfor %}
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
 
-        <c-demo.part title="Outline">
-            {% component_demo %}
-                {% cotton_verbatim %}
-                    {% for name in BOOTSTRAP_COTTON_CONTEXT.button_variants %}
-                        <c-button url="#" color="{{ name }}" outline>{{ name|capfirst }}</c-button>
-                    {% endfor %}
-                {% endcotton_verbatim %}
-            {% endcomponent_demo %}
-        </c-demo.part>
+            <c-demo.part title="Button tags">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        <c-button url="#" color="primary">Default</c-button>
+                        <c-button url="#" color="primary" tag="link">Link</c-button>
+                        <c-button url="#" color="primary" tag="button">Button</c-button>
+                        <c-button url="#" color="primary" tag="button" type="submit">Button Submit</c-button>
+                        <c-button url="#" color="primary" tag="button" type="reset">Button Reset</c-button>
+                        <c-button url="#" color="primary" tag="input">Input</c-button>
+                        <c-button url="#" color="primary" tag="input" type="submit" name="Submitter">Input Submit</c-button>
+                        <c-button url="#" color="primary" tag="input" type="reset" name="Resetter">Input Reset</c-button>
+                        <c-button url="#" color="primary" tag="input" type="reset" name="Resetter">Input Reset</c-button>
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
+
+            <c-demo.part title="Outline">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        {% for name in BOOTSTRAP_COTTON_CONTEXT.button_variants %}
+                            <c-button url="#" color="{{ name }}" outline>{{ name|capfirst }}</c-button>
+                        {% endfor %}
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
+
+            <c-demo.part title="Disabled">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        <c-button url="#" color="primary" tag="link" disabled>Link</c-button>
+                        <c-button color="primary" tag="button" disabled>Button</c-button>
+                        <c-button color="primary" tag="input" disabled>Input</c-button>
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
+        {% enddiscover_menu %}
     </c-demo.section>
 {% endblock content %}

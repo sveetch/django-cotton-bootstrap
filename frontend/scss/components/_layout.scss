@@ -1,205 +1,104 @@
 ///
 /// Base layout structures
 ///
-/// This only about layout structure properties and cosmetic rules are to be avoided.
+/// This only about layout structure, properties and cosmetic rules are to be avoided.
 ///
-body {
+
+.layout-container {
+    display: grid;
+    position: relative;
+    margin: 0 auto;
     height: 100%;
+    grid-template-columns: 100%;
+    grid-template-rows: $layout-head-height min-content auto;
+    grid-template-areas:
+        "page-brand"
+        "page-title"
+        "page-context"
+        "page-content";
+    column-gap: 0;
+    row-gap: 0;
 
-    // Base layout has an advanced structure with menus, context, content, footer, etc..
-    .layout-base {
-        display: grid;
-        height: 100%;
-        grid-template-columns: 100%;
-        grid-template-rows: $layout-head-height min-content auto;
-        grid-template-areas:
-            "brand"
-            "context"
-            "main";
-        column-gap: 0;
-        row-gap: 0;
-
-        @include cb-media-breakpoint-up($layout-breakpoint) {
-            grid-template-columns: $layout-menu-width auto;
-            grid-template-rows: $layout-head-height auto;
-            grid-template-areas:
-                "brand context"
-                "menu main";
-        }
-
-        // Brand
-        .site-brand {
-            grid-area: brand;
-        }
-
-        // Main menu
-        .page-menu {
-            display: none;
-            overflow-y: auto;
-            position: absolute;
-            top: $layout-head-height;
-            left: 0;
-            right: 0;
-            bottom: 0;
-
-            @include cb-media-breakpoint-up($layout-breakpoint) {
-                grid-area: menu;
-                display: block;
-                overflow-x: hidden;
-                position: static;
-                top: auto;
-                left: auto;
-                right: auto;
-                bottom: auto;
-                z-index: auto;
-            }
-        }
-
-        // Sub menu
-        .page-context {
-            grid-area: context;
-        }
-
-        // Main content container
-        .page-content {
-            grid-area: main;
-            @include cb-media-breakpoint-up($layout-breakpoint) {
-                overflow-y: auto;
-            }
-        }
-    }
-
-    // Cover layout is a very simple vertical structure with a simple header and content
-    .layout-cover {
-        display: grid;
-        height: 100%;
-        grid-template-columns: auto;
+    @include cb-media-breakpoint-up($layout-breakpoint) {
+        grid-template-columns: $layout-menu-width-lg auto $layout-menu-width-lg;
         grid-template-rows: $layout-head-height auto;
         grid-template-areas:
-            "head"
-            "main";
-        column-gap: 0;
-        row-gap: 0;
+            "page-brand page-title page-title"
+            "page-menu page-content page-context";
+    }
 
-        // Brand
-        .site-brand {
-            @include cb-flex(0, 0, auto);
-            grid-area: head;
-            border-bottom: 0;
-            border-right: 0;
-            display: flex;
-            justify-content: center;
+    @include cb-media-breakpoint-up(xl) {
+        grid-template-columns: $layout-menu-width-xl auto $layout-menu-width-xl;
+        max-width: rem-calc(1200px);
+    }
 
-            .class-toggler {
-                display: none;
-            }
+    @include cb-media-breakpoint-up(xxl) {
+        max-width: rem-calc(1400px);
+    }
+
+    // Brand
+    .page-brand {
+        grid-area: page-brand;
+    }
+
+    .page-title {
+        grid-area: page-title;
+    }
+
+    //
+    .page-context {
+        grid-area: page-context;
+    }
+
+    // Main menu
+    .page-menu {
+        display: none;
+        overflow-y: auto;
+        position: absolute;
+        top: $layout-head-height;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        @include cb-media-breakpoint-up($layout-breakpoint) {
+            grid-area: page-menu;
+            display: block;
+            overflow-x: hidden;
+            position: static;
+            top: auto;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            z-index: auto;
         }
+    }
 
-        // Main content container
-        .page-content {
-            grid-area: main;
+    // Page content container
+    .page-content {
+        grid-area: page-content;
+        @include cb-media-breakpoint-up($layout-breakpoint) {
             overflow-y: auto;
         }
-    }
 
-    // Adapt objects when menu is opened for mobile behavior only
-    @include cb-media-breakpoint-down($layout-breakpoint) {
-        &.main-menu-opened {
-            overflow-x: hidden;
-            overflow-y: hidden;
-
-            .layout-base {
-                .page-menu {
-                    display: block;
-                    z-index: 200;
-                }
-                .page-content {
-                    overflow-y: hidden;
-                }
-            }
+        .page-title {
+            height: $layout-head-height;
         }
     }
+}
 
-    // For when the inventory is enabled in pages
-    &.shopping-inventory-enabled {
-        .layout-base {
-            .aside-content {
-                grid-area: contentsidebar;
-                position: fixed;
-                top: auto;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                z-index: 50;
-                overflow-y: auto;
+// Adapt objects when menu is opened for mobile behavior only
+@include cb-media-breakpoint-down($layout-breakpoint) {
+    body.main-menu-opened {
+        overflow-x: hidden;
+        overflow-y: hidden;
 
-                .inventory {
-                    display: none;
-                }
-
+        .layout-container {
+            .page-menu {
+                display: block;
+                z-index: 200;
             }
-
             .page-content {
-                // Reserve some bottom space on content for the aside head
-                @include cb-media-breakpoint-down($layout-breakpoint) {
-                    padding-bottom: 3rem;
-                }
-
-                @include cb-media-breakpoint-up($layout-breakpoint) {
-                    display: grid;
-                    height: 100%;
-                    overflow-y: none;
-                    grid-template-columns: 3fr 1fr;
-                    grid-template-rows: auto 1fr;
-                    grid-template-areas:
-                        "breadcrumbs contentsidebar"
-                        "contentmain contentsidebar";
-                    column-gap: 0;
-                    row-gap: 0;
-
-                    .breadcrumb-container {
-                        grid-area: breadcrumbs;
-                    }
-
-                    .main-content {
-                        grid-area: contentmain;
-                        overflow-y: auto;
-                    }
-
-                    .aside-content {
-                        grid-area: contentsidebar;
-                        overflow-y: auto;
-                        position: static;
-                        top: auto;
-                        left: auto;
-                        right: auto;
-                        bottom: auto;
-                        z-index: auto;
-
-                        .inventory {
-                            display: table;
-                        }
-                    }
-                }
-            }
-        }
-
-        // Show up the inventory table for mobile only
-        @include cb-media-breakpoint-down($layout-breakpoint) {
-            &.shopping-inventory-opened {
-                .layout-base {
-                    .aside-content {
-                        height: 60vh;
-
-                        .inventory {
-                            display: table;
-
-                            &.empty {
-                                display: block;
-                            }
-                        }
-                    }
-                }
+                overflow-y: hidden;
             }
         }
     }

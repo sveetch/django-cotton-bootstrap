@@ -5,8 +5,11 @@ from pygments.lexers import HtmlLexer
 from pygments.filters import VisibleWhitespaceFilter
 from pygments.formatters import HtmlFormatter
 
+from pyquery import PyQuery as pq
+
 from django import template
 from django.conf import settings
+from django.utils.text import slugify
 
 from django_cotton.cotton_loader import Loader as CottonLoader
 
@@ -117,15 +120,18 @@ class ComponentDemoNode(template.Node):
             "template": getattr(
                 settings,
                 "COTTON_DEMO_TAG",
-                "cotton_bootstrap/tag.html"
+                "cotton_bootstrap/tags/demo.html"
             ),
             "with_render": True,
+            "with_source": True,
             "with_escaped_source": True,
             "with_escaped_render": True,
         }
 
     def render(self, context):
+        # Render passed source content
         source = self.nodelist.render(context)
+        # Then render it with cotton
         rendered = render_compiled_cotton(source, context=context)
 
         # Resolve and append options from tag arguments
@@ -161,6 +167,51 @@ class ComponentDemoNode(template.Node):
         )
 
 
+class DiscoverMenuNode(template.Node):
+    """
+    Build HTML render of 'discover_menu' templatetag.
+    """
+    def __init__(self, nodelist, options={}):
+        self.nodelist = nodelist
+        self.options = options
+
+        self.defaults = {
+            "template": getattr(
+                settings,
+                "COTTON_MENU_TAG",
+                "cotton_bootstrap/tags/discover-menu.html"
+            ),
+        }
+
+    def render(self, context):
+        # Render passed content
+        source = self.nodelist.render(context)
+
+        # Resolve and append options from tag arguments
+        opt_kwargs = {
+            **self.defaults,
+            **{
+                key: val.resolve(context)
+                for key, val in self.options.items()
+            }
+        }
+
+        # Get template
+        menu_template = template.loader.get_template(opt_kwargs["template"])
+        # Get HTML query to find titles
+        html_query = ".demo-part-title"
+
+        # Render HTML
+        return menu_template.render({
+            **opt_kwargs,
+            "source": source,
+            "parts": [
+                {"title": name.text, "slug": slugify(name.text)}
+                for name in pq(source, parser="html").find(html_query)
+            ],
+        })
+
+
 @register.filter(name="prettify_html")
 def do_prettify_html(content):
     """
@@ -177,14 +228,15 @@ def do_component_demo(parser, token):
 
     Usage sample: ::
 
-        {% component_demo [template="component_demo/tag.html"] [with_render=True] [with_escaped_source=True] [with_escaped_render=True] %}
+        {% component_demo [template="cotton_bootstrap/tags/demo.html"] [with_render=True] [with_escaped_source=True] [with_escaped_render=True] %}
             {% cotton_verbatim %}
                 <c-thecomponent />
             {% endcotton_verbatim %}
         {% endcomponent_demo %}
 
-    From this sample you can see the support options from arguments however you can also
-    pass any other arguments but they won't be implemented in the default template.
+    From this sample you can see the supported options arguments. However you can also
+    pass any other arguments, they are not implemented for usage in the default
+    template but they are still available if you need.
 
     Default template can be defined from setting ``COTTON_DEMO_TAG`` and will default
     to ``component_demo/tag.html`` if setting does not exist.
@@ -210,6 +262,31 @@ def do_component_demo(parser, token):
     parser.delete_first_token()
 
     return ComponentDemoNode(
+        nodelist,
+        options=options
+    )
+
+
+@register.tag(name="discover_menu")
+def do_discover_menu(parser, token):
+    """
+    Parse content to find titles used to build contextual navigation.
+
+    Usage sample: ::
+
+        {% discover_menu [template="cotton_bootstrap/tags/discover-menu.html"] %}
+            ...
+        {% enddiscover_menu %}
+
+    """  # noqa
+    bits = token.split_contents()
+    remaining_bits = bits[1:]
+    options = template.base.token_kwargs(remaining_bits, parser)
+
+    nodelist = parser.parse(("enddiscover_menu",))
+    parser.delete_first_token()
+
+    return DiscoverMenuNode(
         nodelist,
         options=options
     )

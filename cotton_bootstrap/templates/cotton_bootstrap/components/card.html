@@ -3,57 +3,59 @@
 
 {% block content %}
     <c-demo.section>
-        <c-demo.part title="Basic card">
-            {% component_demo %}
-                {% cotton_verbatim %}
-                    <c-card title="{% translate "Notices index" %}"
-                            url="https://perdu.com">
-                        {% translate "Where you will find all Notice objects." %}
-                    </c-card>
-                {% endcotton_verbatim %}
-            {% endcomponent_demo %}
-        </c-demo.part>
+        {% discover_menu title=BOOTSTRAP_COTTON_CURRENT_COMPONENT.title %}
+            <c-demo.part title="Basic card">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        <c-card title="{% translate "Notices index" %}"
+                                url="https://perdu.com">
+                            {% translate "Where you will find all Notice objects." %}
+                        </c-card>
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
 
-        <c-demo.part title="With button title">
-            {% component_demo %}
-                {% cotton_verbatim %}
-                    <c-card title="{% translate "Language index" %}"
-                            url="https://perdu.com"
-                            button_title="Go">
-                        {% translate "Where you will find all Language objects." %}
-                    </c-card>
-                {% endcotton_verbatim %}
-            {% endcomponent_demo %}
-        </c-demo.part>
+            <c-demo.part title="With button title">
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        <c-card title="{% translate "Language index" %}"
+                                url="https://perdu.com"
+                                button_title="Go">
+                            {% translate "Where you will find all Language objects." %}
+                        </c-card>
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
 
-        <c-demo.part title="Inside a grid">
-            <c-slot name="introduction">
-                <p>As a sample of insertion in a grid.</p>
-            </c-slot>
+            <c-demo.part title="Inside a grid">
+                <c-slot name="introduction">
+                    <p>As a sample of insertion in a grid.</p>
+                </c-slot>
 
-            {% component_demo %}
-                {% cotton_verbatim %}
-                    <c-flexgrid classes="border" only>
-                        <c-flexgrid.row>
-                            <c-flexgrid.column>
-                                <c-card title="{% translate "Notices index" %}"
-                                        url="https://perdu.com">
-                                    {% translate "Where you will find all Notice objects." %}
-                                </c-card>
-                            </c-flexgrid.column>
-                            <c-flexgrid.column>
-                                <p>Pew! Pew!</p>
-                            </c-flexgrid.column>
-                            <c-flexgrid.column>
-                                <c-card title="{% translate "Notices index" %}"
-                                        url="https://perdu.com">
-                                    {% translate "Where you will find all Notice objects." %}
-                                </c-card>
-                            </c-flexgrid.column>
-                        </c-flexgrid.row>
-                    </c-flexgrid>
-                {% endcotton_verbatim %}
-            {% endcomponent_demo %}
-        </c-demo.part>
+                {% component_demo %}
+                    {% cotton_verbatim %}
+                        <c-flexgrid classes="border" only>
+                            <c-flexgrid.row>
+                                <c-flexgrid.column>
+                                    <c-card title="{% translate "Notices index" %}"
+                                            url="https://perdu.com">
+                                        {% translate "Where you will find all Notice objects." %}
+                                    </c-card>
+                                </c-flexgrid.column>
+                                <c-flexgrid.column>
+                                    <p>Pew! Pew!</p>
+                                </c-flexgrid.column>
+                                <c-flexgrid.column>
+                                    <c-card title="{% translate "Notices index" %}"
+                                            url="https://perdu.com">
+                                        {% translate "Where you will find all Notice objects." %}
+                                    </c-card>
+                                </c-flexgrid.column>
+                            </c-flexgrid.row>
+                        </c-flexgrid>
+                    {% endcotton_verbatim %}
+                {% endcomponent_demo %}
+            </c-demo.part>
+        {% enddiscover_menu %}
     </c-demo.section>
 {% endblock content %}

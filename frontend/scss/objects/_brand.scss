@@ -2,19 +2,16 @@
 /// Page brand
 ///
 
-.cb-brand {
+.page-brand {
     @include font-size(1rem);
-    color: var(--#{$cbprefix}menu-emphasis);
     display: flex;
     height: $layout-head-height;
     padding: space("shorter") space("normal");
     justify-content: center;
     align-items: center;
     font-weight: $font-weight-bold;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
-    text-transform: uppercase;
-    background-color: var(--#{$cbprefix}menu-bg);
     border-bottom: $onepixel solid var(--#{$cbprefix}menu-subtle);
 
     @include cb-media-breakpoint-up($layout-breakpoint) {

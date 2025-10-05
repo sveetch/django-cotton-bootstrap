@@ -11,6 +11,7 @@ $cb-colors: (
     "white-cloud": #dee2e6,
     "dark": #212529,
     "darkest": #1b1f22,
+    "gray-50": #fcfcfd,
     "gray-100": #f8f9fa,
     "gray-300": #dee2e6,
     "gray-600": #6c757d,
@@ -25,30 +26,37 @@ $cb-colors: (
 );
 /* stylelint-enable color-no-hex */
 
+// Map to build CSS variable for (default) light theme
 $cb-theme-light: (
     "body-bg": cbcolor("white"),
     "body-color": cbcolor("gray-900"),
+    "body-subtle": cbcolor("gray-300"),
+    "body-emphasis": cbcolor("gray-600"),
     "menu-bg": cbcolor("dark"),
     "menu-color": cbcolor("white-cloud"),
     "menu-emphasis": cbcolor("white"),
     "menu-subtle": cbcolor("gray-600"),
     "menu-hover-bg": cbcolor("gray-800"),
+    "content-bg": cbcolor("gray-50"),
     "context-bg": cbcolor("white"),
     "context-color": cbcolor("gray-900"),
     "context-emphasis": cbcolor("gray-600"),
     "context-subtle": cbcolor("gray-300"),
-    "content-bg": cbcolor("gray-100"),
     "callout-link": cbcolor("blue-600"),
     "callout-code-color": cbcolor("pink-600"),
 );
 
-// NOTE: The Menu keeps the same colors in all color modes
+// Map to build CSS variable for dark theme
 $cb-theme-dark: (
+    "body-bg": cbcolor("dark"),
+    "body-color": cbcolor("white"),
+    "body-subtle": cbcolor("gray-300"),
+    "body-emphasis": cbcolor("white"),
+    "content-bg": cbcolor("darkest"),
     "context-bg": cbcolor("dark"),
     "context-color": cbcolor("white-cloud"),
     "context-emphasis": cbcolor("gray-600"),
     "context-subtle": cbcolor("gray-600"),
     "callout-link": cbcolor("blue-300"),
     "callout-code-color": cbcolor("pink-300"),
-    "content-bg": cbcolor("darkest"),
 );

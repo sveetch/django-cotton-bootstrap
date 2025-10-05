@@ -1,0 +1,5 @@
+body {
+    height: 100%;
+    color: var(--#{$cbprefix}body-color);
+    background-color: var(--#{$cbprefix}body-bg);
+}

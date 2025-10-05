@@ -1,23 +1,150 @@
 ///
 /// Page context container
+/// This is almost identical to page-menu except font size and border, it may be
+/// unified in a same mixin or object with page-menu
 ///
 
+@mixin menu-item-base() {
+    width: 100%;
+    padding: $cb-btn-padding-y $cb-btn-padding-x;
+    font-size: 0.9rem;
+    text-align: left;
+    text-decoration: none;
+    line-height: 1.1;
+    background-color: transparent;
+    border: 0;
+}
+
 .page-context {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: space("shorter") space("large");
-    color: var(--#{$cbprefix}context-color);
-    background-color: var(--#{$cbprefix}context-bg);
-    border-bottom: $onepixel solid var(--#{$cbprefix}context-subtle);
+    border-left: $onepixel solid var(--#{$cbprefix}menu-subtle);
 
-    .page-title {
-        h1 {
-            @include font-size($h4-font-size);
+    .navigation {
+        margin: 0;
+        padding: space("normal") space("normal");
+        list-style: none;
+
+        // All links adopts the same base rules
+        a {
+            @include menu-item-base();
+            display: block;
+            color: inherit;
+
+            .bi,
+            .icon {
+                margin-right: space("tiny");
+                color: var(--#{$cbprefix}menu-subtle);
+            }
+
+            &.active {
+                //color: var(--#{$cbprefix}menu-emphasis);
+                font-weight: bold;
+            }
+
+            &:hover {
+                //color: var(--#{$cbprefix}menu-emphasis);
+                border-left: 4px solid var(--#{$cbprefix}menu-hover-bg);
+                border-radius: $cb-border-radius-lg;
+
+                .bi,
+                .icon {
+                    color: inherit;
+                }
+            }
+        }
+
+        // Reset all lists
+        ul {
             margin: 0;
+            padding-left: 0;
+            list-style: none;
+        }
 
-            @include cb-media-breakpoint-up($layout-breakpoint) {
-                @include font-size($h2-font-size);
+        // Menu section allow for a title or collapse toggler button
+        .section {
+            margin-top: space("normal");
+
+            & + *:not(.section) {
+                margin-top: space("normal");
+            }
+
+            // First possible section paragraph is assumed as a title
+            .title {
+                @include menu-item-base();
+                @include font-size($small2-font-size);
+                margin: 0;
+                font-weight: $font-weight-semibold;
+                text-transform: uppercase;
+                color: var(--#{$cbprefix}menu-subtle);
+            }
+
+            p:not(.title) {
+                @include menu-item-base();
+                @include font-size($small2-font-size);
+                margin: 0;
+                color: var(--#{$cbprefix}menu-subtle);
+
+                b, strong {
+                    color: var(--#{$cbprefix}menu-color);
+                }
+            }
+
+            button {
+                @include menu-item-base();
+                position: relative;
+                padding-right: 1rem;
+                color: inherit;
+
+                &[data-bs-toggle] {
+                    &::after {
+                        //@include bb-icon(map-get($bootstrap-icons-map, "dash-lg"));
+                        position: absolute;
+                        right: 0;
+                    }
+
+                    &.collapsed {
+                        &::after {
+                            //content: map-get($bootstrap-icons-map, "plus-lg");
+                        }
+                    }
+                }
+            }
+
+            li li {
+                position: relative;
+                padding-left: space("normal");
+
+                &::after {
+                    position: absolute;
+                    top: space("shorter");
+                    left: space("normal");
+                    //@include bb-icon(map-get($bootstrap-icons-map, "dot"));
+                }
+            }
+
+            li button {
+                &:hover {
+                    color: var(--#{$cbprefix}menu-emphasis);
+                    background-color: var(--#{$cbprefix}menu-hover-bg);
+                    border-radius: $cb-border-radius-lg;
+
+                    .bi,
+                    .icon {
+                        color: inherit;
+                    }
+                }
+
+                &[data-bs-toggle] {
+                    &::after {
+                        right: 0.2rem;
+                        //@include bb-icon(map-get($bootstrap-icons-map, "chevron-up"));
+                    }
+
+                    &.collapsed {
+                        &::after {
+                            //content: map-get($bootstrap-icons-map, "chevron-down");
+                        }
+                    }
+                }
             }
         }
     }
